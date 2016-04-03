@@ -1,1 +1,1 @@
-node app
+npm install && node app
