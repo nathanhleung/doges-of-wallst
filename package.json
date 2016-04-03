@@ -9,6 +9,9 @@
   "author": "Nathan and Adit!",
   "license": "ISC",
   "dependencies": {
-    "brain": "^0.7.0"
+    "brain": "^0.7.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "morgan": "^1.7.0"
   }
 }
