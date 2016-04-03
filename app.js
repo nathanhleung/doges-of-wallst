@@ -5,6 +5,7 @@ const sass = require('node-sass-middleware');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const flash = require('express-flash');
+const session = require('express-session');
 
 const mainCtrl = require('./controllers/main');
 const stocksCtrl = require('./controllers/stocks');
@@ -16,10 +17,13 @@ app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(logger('dev'));
+app.use(session({
+  secret: process.env.SECRET || 'heyheyhey'
+}));
 app.use(expressValidator({
   customValidators: {
     isNumber(value) {
-      return (typeof(value) === "number");
+      return (typeof(Number(value)) === "number");
     }
   }
 }));

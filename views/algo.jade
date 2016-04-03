@@ -16,12 +16,12 @@ block content
       .form-group
         label Enter Parameters
         p If Moving Average is Above/Below
-        input.form-control(placeholder='Percent' name='sma-threshold')
+        input.form-control(type='number' placeholder='Percent' name='sma-threshold')
         p.help-block.
           You'll want to buy low and sell high, so when the moving average is below the current price, you'll buy, and you'll sell when the moving average is above the current price (which means a downturn may be in the midst).
       .form-group
         label Starting Portfolio
-        input.form-control(type='number' placeholder='Enter amount of CNY' name='seed')
+        input.form-control(type='number' placeholder='Enter amount of BTC to start with' name='seed')
       br
       .pull-left
         .form-inline

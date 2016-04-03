@@ -1,6 +1,7 @@
 from pyalgotrade import strategy
 from pyalgotrade.barfeed import yahoofeed
 from pyalgotrade.technical import ma
+import os
 
 print "Our algorithm helps to close the gap between investors in the real world"
 print "Hello! Welcome to the algorithm tester"
@@ -8,11 +9,13 @@ print "Algoritms allow investors to take their "
 longPositionPurchases = input("Please enter the number of shares in Oracle you would like to purchase in the long position:  ")
 print "At what percentage would you like to sell/buy (buy when it dips under the percentage, and sell when it goes over the percentage)"
 percentageOfTrade = input("Percentage: ")
+print "What duration do you want to calculate your moving average on?"
+userSmaDuration = input("Days: ")
         
         
 class MyTradingStrategy(strategy.BacktestingStrategy):
-    def __init__(self, feed, instrument, smaPeriod):
-        strategy.BacktestingStrategy.__init__(self, feed, 1000)
+    def __init__(self, feed, instrument, smaPeriod, startingBalance):
+        strategy.BacktestingStrategy.__init__(self, feed, startingBalance)
         self.__position = None
         self.__instrument = instrument
         self.setUseAdjustedValues(True)
@@ -45,18 +48,14 @@ class MyTradingStrategy(strategy.BacktestingStrategy):
             self.__position.exitMarket()
             
     
-def run_strategy(smaPeriod):  #Loads yahoo feed from csv file
+def run_strategy(smaPeriod, startingBalance):  #Loads yahoo feed from csv file
     feed = yahoofeed.Feed()
-    feed.addBarsFromCSV("orcl", "orcl-2000.csv")
+    feed.addBarsFromCSV("orcl", os.path.abspath(os.path.join(os.pardir, 'machine-learning', 'data', 'json2csv', 'btc_cny.csv')));
     
     #Evalutes strategy by testing it using the feed
     
-    TradingStrategy = MyTradingStrategy(feed, "orcl", smaPeriod)
+    TradingStrategy = MyTradingStrategy(feed, "orcl", smaPeriod, startingBalance)
     TradingStrategy.run()
-    print "Final portfolio value: $%.2f" % TradingStrategy.getBroker().getEquity()
+    print "You made: $%.2f" % (TradingStrategy.getBroker().getEquity() - startingBalance)
 
-
-for i in range(10,30):
-    print "Using a simple moving average period of " + str(i)
-    run_strategy(i)
-    print "" # pretty newline
+run_strategy(userSmaDuration, 1000000)
