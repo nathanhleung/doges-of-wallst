@@ -1,5 +1,7 @@
 body {
   font-family: Lato;
+  // for scrollspy
+  position: relative;
 }
 
 .navbar-fixed-top {
@@ -55,4 +57,9 @@ body {
     background: #222;
     color: white;
   }
+}
+
+.btn-chevron {
+  color: #444;
+  font-size: 20px;
 }

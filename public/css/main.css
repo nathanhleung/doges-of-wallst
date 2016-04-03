@@ -1,5 +1,6 @@
 body {
-  font-family: Lato; }
+  font-family: Lato;
+  position: relative; }
 
 .navbar-fixed-top .navbar-brand {
   line-height: 40px; }
@@ -36,3 +37,7 @@ body {
   .btn-custom:hover {
     background: #222;
     color: white; }
+
+.btn-chevron {
+  color: #444;
+  font-size: 20px; }

@@ -1,6 +1,7 @@
 extends /_layout
 
 block content
+  #top
   .jumbotron.full-page
     .container
       #landing-copy.text-center
@@ -13,32 +14,67 @@ block content
         br
         p Begin testing your algorithms today with historical data
         br
-        i.fa.fa-chevron-down
+        br
+        br
+        a.btn-chevron(href='#page2')
+          i.fa.fa-chevron-down
   .jumbotron.full-page#page2
     .container
       .text-center
         h1 How It Works
         p Write an algorithm using our libraries, and backtest it using historical cryptocurrency price data.
-  .container
-    h1 DWS
-    textarea.form-control(placeholder='your algorithm' rows='10')
-    br
-    .pull-left
-      .form-inline
-        .form-group
-          p Select Trading Pair&nbsp;
-            select.form-control
-              option DOGE/BTC
-              option(disabled) LTC/BTC
-              option(disabled) ETH/BTC
-              option(disabled) XRP/BTC
-            br
-            br
-            | &nbsp;Select Time Interval #[input.form-control(type='date')] to now&nbsp;
-    .pull-right
-      button.btn.btn-primary.btn-lg Run
-    .clearfix
-    br
-    br
-    pre.
-      // How to make an Algo
+        br
+        br
+      .row
+        .col-sm-6
+          pre
+            code.python.
+              import pyalgotrade
+              
+              class TradingStrategy
+                def __intit__(yo)
+                  yo.(hey);
+        .col-sm-6
+          p Create algorithms using our code and run them, and compete against our community to make the most profits.
+          p In the future, you'll be able to deploy your algorithms on our platform to trade on major cryptocurrency exchanges.
+      br
+      br
+      br
+      br
+      .text-center
+        a.btn-chevron(href='#page3')
+          i.fa.fa-chevron-down
+  .jumbotron.full-page#page3
+    .container
+      .text-center
+        h1 Try it Now
+        p Use our interactive editor to try an algorithm in your browser
+        br
+      pre
+        textarea.form-control(placeholder='Your Algorithm' rows='10')
+      br
+      .pull-left
+        .form-inline
+          .form-group
+            p Select Trading Pair&nbsp;
+              select.form-control
+                option DOGE/BTC
+                option(disabled) LTC/BTC (coming soon)
+                option(disabled) ETH/BTC (coming soon)
+                option(disabled) XRP/BTC (coming soon)
+              br
+              br
+              | &nbsp;Select Time Interval #[input.form-control(type='date')] to now&nbsp;
+      .pull-right
+        button.btn.btn-primary.btn-lg Run
+      .clearfix
+      br
+      br
+      h2 Sample Algorithm
+      pre
+        code.python.
+          import pyalgotrade
+          
+          class TradingStrategy
+            def __intit__(yo)
+              yo.(hey);

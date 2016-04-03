@@ -8,10 +8,12 @@ html
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:400,300')
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/agate.min.css")
     link(rel='stylesheet' href='/css/main.css')
-  body
+  body(data-spy='scroll' data-target='#navbar-content')
     include /_partials/header.jade
     block content
     script(src='https://code.jquery.com/jquery-2.2.2.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js")
     script(src='/js/main.js')

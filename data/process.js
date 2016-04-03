@@ -12,104 +12,87 @@ mkdirp(filePath, (err) => {
   if (err) {
     console.log(err);
   }
-  request(`http://data.bter.com/api/1/trade/${currencyPair}/1`, (err, response, body) => {
-    let lastTradeDate = JSON.parse(body).data[0].date;
-    let i = 1; // starting with 0 gives you last 80 trades
-    let json = {};
-    let cumulativeData = [];
-    async.doWhilst((cb) => {
-      request(`http://data.bter.com/api/1/trade/${currencyPair}/${i}`, (err, response, body) => {
-        if (err) {
-          cb(err);
-        }
-        json = JSON.parse(body);
-        const data = json.data;
+  fs.readFile(
+    path.join(__dirname, 'raw', `${currencyPair}.json`),
+    (err, data) => {
+      let json = JSON.parse(data);
+      let cumulativeData = [];
 
-        const firstDateInSet = data[0].date;
-        const lastDateInSet = data[data.length - 1].date;
-        // Number of days after the epoch subtracted, then add 1 to include last date
-        const daysInSet =
-          Math.floor(lastDateInSet / 86400) - Math.floor(firstDateInSet / 86400) + 1;
+      const firstDateInSet = json[0].date;
+      const lastDateInSet = json[json.length - 1].date;
+      // Number of days after the epoch subtracted, then add 1 to include last date
+      const daysInSet =
+        Math.floor(lastDateInSet / 86400) - Math.floor(firstDateInSet / 86400) + 1;
 
-        let tradesByDay = [];
-
-        for (let j = 0; j < daysInSet; j++) {
-          const tradesDuringDay = data.filter((trade) => {
-            const daysAfterFirst =
-              Math.floor(trade.date / 86400) - Math.floor(firstDateInSet / 86400);
-            if (daysAfterFirst === j) {
-              return true;
-            }
-            return false;
-          });
-          
-          tradesByDay.push(tradesDuringDay);
-        }
-
-        tradesByDay.forEach((day) => {
-          const dateString = new Date(day[0].date * 1000).toISOString().substr(0, 10);
-          if (day.length !== 0) {
-            const high = day.reduce((prev, curr) => {
-              const currPrice = Number(curr.price);
-              if (currPrice > prev) {
-                return currPrice;
-              }
-              return prev;
-            }, 0);
-            const low = day.reduce((prev, curr) => {
-              const currPrice = Number(curr.price);
-              if (currPrice < prev) {
-                return currPrice;
-              }
-              return prev;
-            }, Infinity);
-            const volume = day.reduce((prev, curr) => {
-              return prev + Number(curr.amount);
-            }, 0);
-            const close = day[day.length - 1].price;
-            // toISOString() will give you YYYY-MM-DDTHH:mm:ss.sssZ
-            // We only need YYYY-MM-DD
-            cumulativeData.push({
-              date: dateString,
-              open: day[0].price,
-              high: high,
-              low: low,
-              close: close,
-              volume: volume,
-              // it's a cryptocurrency, so no corporate actions to account for
-              adjClose: close,
-            });
-          } else {
-            // if there were no trades today, just use yesterday's data
-            const yesterdayPrice = cumulativeData[cumulativeData.length - 1].price;
-            cumulativeData.push({
-              date: dateString,
-              open: yesterdayPrice,
-              high: yesterdayPrice,
-              low: yesterdayPrice,
-              close: yesterdayPrice,
-              volume: 0,
-              adjClose: yesterdayPrice,
-            });
-          }
-        });
-        i += 1000;
-        console.log(`Gathering record ${i}`);
-        cb(null, cumulativeData);
-      });
-    }, () => {
-      return i < 4000;
-      return json.data.length > 0;
-    }, (err, data) => {
-      if (err) {
-        console.log(err);
+      let tradesByDay = [];
+      for (let i = 0; i < daysInSet; i++) {
+        tradesByDay.push([]);
       }
-      fs.writeFile(path.join(filePath, `${currencyPair}.json`), JSON.stringify(data), (err) => {
+
+      json.forEach((trade) => {
+        const daysAfterFirst =
+            Math.floor(trade.date / 86400) - Math.floor(firstDateInSet / 86400);
+        tradesByDay[daysAfterFirst].push(trade);
+      });
+
+      tradesByDay.forEach((day) => {
+        const dateString = new Date(day[0].date * 1000).toISOString().substr(0, 10);
+        if (day.length !== 0) {
+          const high = day.reduce((prev, curr) => {
+            const currPrice = Number(curr.price);
+            if (currPrice > prev) {
+              return currPrice;
+            }
+            return prev;
+          }, 0);
+          const low = day.reduce((prev, curr) => {
+            const currPrice = Number(curr.price);
+            if (currPrice < prev) {
+              return currPrice;
+            }
+            return prev;
+          }, Infinity);
+          const volume = day.reduce((prev, curr) => {
+            return prev + Number(curr.amount);
+          }, 0);
+          const close = day[day.length - 1].price;
+          // toISOString() will give you YYYY-MM-DDTHH:mm:ss.sssZ
+          // We only need YYYY-MM-DD
+          cumulativeData.push({
+            date: dateString,
+            open: day[0].price,
+            high: high,
+            low: low,
+            close: close,
+            volume: volume,
+            // it's a cryptocurrency, so no corporate actions to account for
+            adjClose: close,
+          });
+        } else {
+          // if there were no trades today, just use yesterday's data
+          const yesterdayPrice = cumulativeData[cumulativeData.length - 1].price;
+          cumulativeData.push({
+            date: dateString,
+            open: yesterdayPrice,
+            high: yesterdayPrice,
+            low: yesterdayPrice,
+            close: yesterdayPrice,
+            volume: 0,
+            adjClose: yesterdayPrice,
+          });
+        }
+      });
+
+      console.log(tradesByDay[0]);
+    
+    fs.writeFile(
+      path.join(filePath, `${currencyPair}.json`),
+      JSON.stringify(cumulativeData),
+      (err) => {
         if (err) {
           console.log(err);
         }
-        console.log(`Data writen to json/${currencyPair}.json!`);
+        console.log(`Data written to process/${currencyPair}.json!`);
       });
-    });
   });
 });
