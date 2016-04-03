@@ -50,9 +50,7 @@ class MyTradingStrategy(strategy.BacktestingStrategy):
     
 def run_strategy(smaPeriod, startingBalance):  #Loads yahoo feed from csv file
     feed = yahoofeed.Feed()
-    # feed.addBarsFromCSV("orcl", os.path.abspath(os.path.join(os.pardir, 'machine-learning', 'data', 'json2csv', 'btc_cny.csv')));
-    # Azure URL
-     feed.addBarsFromCSV("orcl", os.path.abspath(os.path.join(os.pardir, 'wwwroot', 'data', 'json2csv', 'btc_cny.csv')));
+    feed.addBarsFromCSV("orcl", os.path.abspath(os.path.join(os.pardir, 'machine-learning', 'data', 'json2csv', 'btc_cny.csv')));
     
     #Evalutes strategy by testing it using the feed
     
