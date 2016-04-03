@@ -26,3 +26,6 @@ Now, simulations are great because they allow the user to see a projected result
 For that reason, we decided to use cryptocurrencies like bitcoin and dogecoin, in an effort to bring the rush of trading to people of all ages. These forms of currency do not require the user to be 18 to trade, so anyone who is interested can do that.
 
 Gone are the days where we have to wait until we are older to experience the things we want to experience now. Inspiration can be fleeting, so to those kids out there that have just finished Flash Boys or Liar's Poker, and want to learn more about the incredibly volatile world of investment banking and trading, the Doges of Wall Street have a solution.
+
+## Runtime Notes
+Make sure you run it on port 8000 on Azure like so: `PORT=8000 node app`. There's an nginx reverse proxy set up that responds to requests on port 80 and serves the Node.js app.
