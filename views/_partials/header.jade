@@ -6,17 +6,21 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='#top')
+      a.navbar-brand(href=page=='home'?'#top':'/')
         img(src='https://i.imgur.com/VINS52e.png' height='40px')
     #navbar-content.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         li
           //- (class=page=='home'?'active':undefined)
-          a(href='#top') Home
-        li
-          //- (class=page=='about'?'active':undefined)
-          a(href='#page2') How It Works
-        li
-          //- (class=page=='about'?'active':undefined)
-          a(href='#page3') Try It Now
+          a(href=page=='home'?'#top':'/') Home
+        if page == 'home'
+          li
+            //- (class=page=='about'?'active':undefined)
+            a(href='#page2') How It Works
+          li
+            //- (class=page=='about'?'active':undefined)
+            a(href='#page3') Why Us?
+        li(class=page=='algo'?'active':undefined)
+          a(href='/algo') Algorithm Console
+
 

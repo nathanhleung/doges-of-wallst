@@ -10,8 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.0.0-rc.2",
+    "body-parser": "^1.15.0",
     "brain": "^0.7.0",
     "express": "^4.13.4",
+    "express-flash": "0.0.2",
+    "express-validator": "^2.20.3",
     "historic": "0.0.3",
     "intraday": "0.0.5",
     "jade": "^1.11.0",

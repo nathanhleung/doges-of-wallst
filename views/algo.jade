@@ -1,0 +1,41 @@
+extends /_layout
+
+block content
+  .container
+    .text-center
+      h1 Try it Now
+      p Use our interactive editor to try an algorithm in your browser
+      br
+    form(method='POST' action='/algo')
+      .form-group
+        label Method
+        select.form-control(name='method')
+          option(value='sma10') Simple Moving Average (10-day)
+          option(value='sma20') Simple Moving Average (20-day)
+          option(value='sma30') Simple Moving Average (30-day)
+      .form-group
+        label Enter Parameters
+        p If Moving Average is Above/Below
+        input.form-control(placeholder='Percent' name='sma-threshold')
+        p.help-block.
+          You'll want to buy low and sell high, so when the moving average is below the current price, you'll buy, and you'll sell when the moving average is above the current price (which means a downturn may be in the midst).
+      .form-group
+        label Starting Portfolio
+        input.form-control(type='number' placeholder='Enter amount of CNY' name='seed')
+      br
+      .pull-left
+        .form-inline
+          .form-group
+            p Select Trading Pair&nbsp;
+              select.form-control(name='pair')
+                option(value='btc-cny') BTC/CNY
+                option(disabled) DOGE/BTC (coming soon)
+                option(disabled) ETH/BTC (coming soon)
+                option(disabled) XRP/BTC (coming soon)
+              br
+              br
+              | &nbsp;Select Time Interval #[input.form-control(type='date' name='start')] to most recent data&nbsp;
+              p.help-block Data is available from 2013-4-16 to 2013-12-05
+      .pull-right
+        button.btn.btn-primary.btn-lg(type='submit') Run
+    .clearfix
