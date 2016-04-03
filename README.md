@@ -4,6 +4,13 @@ Anyone can do algorithmic trading, no matter their age or experience level. We a
 
 ![Doge](https://i.imgur.com/byi1DAi.png?1)
 
+## How We Did It
+1. Scraped data (1 million trades) from [Bter](http://bter.com) (cyrptocoin exchange) API on the CNY/BTC pair
+2. Sifted through those records using higher-order array functions to reduce data to daily stats: open, close, high, low, volume
+3. Get user parameters for momentum trading algorithm
+4. Use momentum trading algorithm (python code) on daily records to determine daily returns
+5. Return result to Node.js and present to the user
+
 ## Our Inspriration
 
 As a kid, I had grown up reading Michael Lewis's stories about stock market phenomena, and how certain people were able to pick up on the hints that something was a miss, and make a lot of money. I wanted to be like that. For that reason, I would always ask my father if I could open my own brokerage account, so I could be the next Louis Ranieri. Unfortunately, two things stood in my way: the fact that you had to be 18 in order to open an account, and my dad's fear that I would lose all of his money in a bad trade.
