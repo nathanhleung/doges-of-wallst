@@ -1,5 +1,6 @@
 exports.home = (req, res) => {
   res.render('home', {
-    title: 'yo!'
+    title: 'Algo Trader',
+    page: 'home',
   });
 };

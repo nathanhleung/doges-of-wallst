@@ -1,0 +1,38 @@
+body {
+  font-family: Lato; }
+
+.navbar-fixed-top .navbar-brand {
+  line-height: 40px; }
+
+.navbar-fixed-top .navbar-nav {
+  min-height: 70px; }
+  .navbar-fixed-top .navbar-nav a {
+    line-height: 40px;
+    font-size: 1.8rem;
+    padding-left: 25px;
+    padding-right: 25px; }
+
+.navbar-fixed-top + .container {
+  padding-top: 70px; }
+
+.full-page {
+  min-height: 100vh;
+  margin-bottom: 0;
+  padding-top: 90px; }
+  .full-page#page2 {
+    background: white; }
+  .full-page #landing-copy {
+    padding-top: 50px; }
+
+.btn {
+  border-radius: 0; }
+
+.btn-custom {
+  padding: 15px 20px;
+  background: #444;
+  text-transform: uppercase;
+  color: white;
+  transition: all 0.3s; }
+  .btn-custom:hover {
+    background: #222;
+    color: white; }

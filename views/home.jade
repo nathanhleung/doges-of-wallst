@@ -1,6 +1,44 @@
 extends /_layout
 
 block content
+  .jumbotron.full-page
+    .container
+      #landing-copy.text-center
+        h1 Doges of Wall Street
+        br
+        p Algorithmic Trading for Cryptocurrencies
+        br
+        a.btn.btn-custom.btn-lg(href='#page2') Get Started
+        br
+        br
+        p Begin testing your algorithms today with historical data
+        br
+        i.fa.fa-chevron-down
+  .jumbotron.full-page#page2
+    .container
+      .text-center
+        h1 How It Works
+        p Write an algorithm using our libraries, and backtest it using historical cryptocurrency price data.
   .container
-    h1 yo
-    p= yo
+    h1 DWS
+    textarea.form-control(placeholder='your algorithm' rows='10')
+    br
+    .pull-left
+      .form-inline
+        .form-group
+          p Select Trading Pair&nbsp;
+            select.form-control
+              option DOGE/BTC
+              option(disabled) LTC/BTC
+              option(disabled) ETH/BTC
+              option(disabled) XRP/BTC
+            br
+            br
+            | &nbsp;Select Time Interval #[input.form-control(type='date')] to now&nbsp;
+    .pull-right
+      button.btn.btn-primary.btn-lg Run
+    .clearfix
+    br
+    br
+    pre.
+      // How to make an Algo
