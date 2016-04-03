@@ -2,7 +2,9 @@
 
 Anyone can do algorithmic trading, no matter their age or experience level. We are democratizing the worldwide financial system, one derivative product at a time.
 
-![Doge](https://i.imgur.com/VINS52e.png)
+![Doge](https://i.imgur.com/byi1DAi.png?1)
+
+## Our Inspriration
 
 As a kid, I had grown up reading Michael Lewis's stories about stock market phenomena, and how certain people were able to pick up on the hints that something was a miss, and make a lot of money. I wanted to be like that. For that reason, I would always ask my father if I could open my own brokerage account, so I could be the next Louis Ranieri. Unfortunately, two things stood in my way: the fact that you had to be 18 in order to open an account, and my dad's fear that I would lose all of his money in a bad trade.
 
