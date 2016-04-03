@@ -1,5 +1,6 @@
 exports.home = (req, res) => {
   res.render('home', {
-    title: 'yo!'
+    title: 'Doges of Wall Street - Algorithmic Trading for Cryptocurrencies',
+    page: 'home',
   });
 };
