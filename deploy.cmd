@@ -1,1 +1,1 @@
-npm install && node app
+npm install && npm start
