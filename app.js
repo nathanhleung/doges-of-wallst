@@ -48,6 +48,6 @@ app.get('/', mainCtrl.home);
 app.get('/algo', mainCtrl.algo);
 app.post('/algo', mainCtrl.postAlgo);
 
-app.listen(app.get('port'), (req, res) => {
+app.listen(app.get('port'), '0.0.0.0', (req, res) => {
   console.log(`App running on port ${app.get('port')}`);
 });
