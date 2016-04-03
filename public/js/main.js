@@ -1,3 +1,4 @@
+hljs.initHighlightingOnLoad();
 
 // Smooth scroll
 $(function() {
