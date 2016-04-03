@@ -5,7 +5,7 @@ Anyone can do algorithmic trading, no matter their age or experience level. We a
 ![Doge](https://i.imgur.com/byi1DAi.png?1)
 
 ## How We Did It
-1. Scraped data (1 million trades) from [Bter](http://bter.com) (cyrptocoin exchange) API on the CNY/BTC pair
+1. Scraped data (1 million trades) from [Bter](http://bter.com) (cryptocoin exchange) API on the CNY/BTC pair
 2. Sifted through those records using higher-order array functions to reduce data to daily stats: open, close, high, low, volume
 3. Get user parameters for momentum trading algorithm
 4. Use momentum trading algorithm (python code) on daily records to determine daily returns
