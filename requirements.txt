@@ -1,3 +1,4 @@
+--find-links wheelhouse
 BzrTools==2.6.0
 PyAlgoTrade==0.17
 SecretStorage==2.0.0
