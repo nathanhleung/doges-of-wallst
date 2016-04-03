@@ -7,7 +7,7 @@ const fs = require('fs');
 const async = require('async');
 
 const filePath = path.join(__dirname, 'raw');
-const currencyPair = 'doge_btc';
+const currencyPair = 'btc_cny';
 mkdirp(filePath, (err) => {
   if (err) {
     console.log(err);
@@ -20,6 +20,7 @@ mkdirp(filePath, (err) => {
       if (err) {
         cb(err);
       }
+      
       cumulativeData = cumulativeData.concat(JSON.parse(body).data);
       i += 1000;
       console.log(`Gathering record ${i}`);
