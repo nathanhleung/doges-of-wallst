@@ -8,7 +8,7 @@ chardet==2.0.1
 colorama==0.2.5
 configobj==4.7.2
 duplicity==0.6.23
-html5lib==0.999
+html5lib==0.99999999
 httplib2==0.8
 keyring==3.5
 launchpadlib==1.10.2
